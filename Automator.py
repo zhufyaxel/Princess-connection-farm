@@ -226,13 +226,20 @@ class Automator:
         if need_auth:
             auth_name, auth_id = random_name(), CreatIDnum()
             self.auth(auth_name=auth_name, auth_id=auth_id)
+    
+    def lockingRunning(self):
+        self.lockimg('img/paobu.bmp', ifclick=[(200,400)], ifdelay=0.5,elseclick=[(1, 1)], elsedelay=0.5)
+        
+        print("正在跑步")
+        self.d.click(842,488)
+        time.sleep(1)
+        self.d.click(842,488)
+        time.sleep(1)
 
     def init_home(self):
+        # 这里防一波第二天可可萝跳脸教程
         self.lockimg('img/liwu.bmp', elseclick=[(1, 1)], elsedelay=0.5)  # 首页锁定
         time.sleep(0.5)
-        self.lockimg('img/liwu.bmp', elseclick=[(1, 1)], elsedelay=0.2)  # 首页锁定
-        time.sleep(0.5)
-        # 这里防一波第二天可可萝跳脸教程
         screen_shot_ = self.d.screenshot(format='opencv')
         num_of_white, _, _ = UIMatcher.find_gaoliang(screen_shot_)
         if num_of_white < 50000:
@@ -242,6 +249,18 @@ class Automator:
         if UIMatcher.img_where(screen_shot_, 'img/kekeluo.bmp'):
             self.lockimg('img/renwu_1.bmp', elseclick=[(837, 433)], elsedelay=1)
             self.lockimg('img/liwu.bmp', elseclick=[(90, 514)], elsedelay=0.2)  # 首页锁定
+        if UIMatcher.img_where(screen_shot_, 'img/paobu.bmp'):
+            print("正在跑步")
+            time.sleep(1)
+            self.d.click(200,400)
+            time.sleep(1)
+            self.d.click(200,400)
+            time.sleep(1)
+            self.d.click(842,488)
+            time.sleep(1)
+            self.d.click(842,488)
+        
+       
 
     def sw_init(self):
         self.switch = 0
@@ -328,7 +347,7 @@ class Automator:
             self.d.click(100, 505)
             time.sleep(1)  # 首页锁定，保证回到首页
 
-    def dianzan(self, sortflag=0):  # 行会点赞
+    def dianzan(self, sortflag=1):  # 行会点赞
         self.lockimg('img/liwu.bmp', elseclick=[(131, 533)], elsedelay=1)  # 回首页
         # 进入行会
         self.d.click(688, 432)
@@ -721,6 +740,35 @@ class Automator:
         self.shuatuzuobiao(161, 326, self.times)  # 11-1
         self.lockimg('img/liwu.bmp', elseclick=[(131, 533)], elsedelay=1)  # 回首页
 
+    def RunningMatch(self):
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(200,400)
+        time.sleep(1)
+        self.d.click(842,488)
+        time.sleep(1)
+        self.d.click(842,488)
+        time.sleep(1)
+        self.d.click(842,488)
+        time.sleep(1)
+        self.d.click(842,488)
+        time.sleep(1)
+        self.d.click(842,488)
     def dixiacheng(self,firsttime=False):  # 地下城
         time.sleep(2)
         self.d.click(1, 1)  # 可可萝教程跳过
@@ -870,9 +918,13 @@ class Automator:
                 tmp_cout = tmp_cout + 1
                 if UIMatcher.img_where(screen_shot_, 'img/kuaijin.jpg'):
                     self.d.click(913, 494)  # 点击快进
+                    time.sleep(0.5)
+                    self.d.click(912, 423)  # 点auto按钮
                     time.sleep(1)
                 if UIMatcher.img_where(screen_shot_, 'img/kuaijin_1.jpg'):
                     self.d.click(913, 494)  # 点击快进
+                    time.sleep(0.5)
+                    self.d.click(912, 423)  # 点auto按钮
                     time.sleep(1)
             else:
                 tmp_cout = 0

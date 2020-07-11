@@ -17,20 +17,11 @@ def runmain(address, account, password):
     a = Automator(address)
     a.start()
 
-    # #opencv识别可视化 无法在多线程中使用
-    # plt.ion()
-    # fig, ax = plt.subplots(1)
-    # plt.show()
 
     print('>>>>>>>即将登陆的账号为：', account, '密码：', password, '<<<<<<<')
     a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao2.txt内
-    input("Press Enter to continue...")
-    a.RunningMatch()
-    input("Press Enter to continue...")    
+    a.lockingRunning()
     a.init_home()  # 初始化，确保进入首页
-    input("Press Enter to continue...")
-    a.hanghui()  # 行会捐赠
-
     a.change_acc()  # 退出当前账号，切换下一个
 
 

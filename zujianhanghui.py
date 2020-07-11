@@ -16,7 +16,7 @@ import re
 4. 运行本程序
 '''
 
-clubname1='行会1的名字，请自行修改'
+clubname1='妖妖妖妖妖'
 clubname2='行会2的名字，请自行修改'
 
 
