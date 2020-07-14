@@ -142,7 +142,7 @@ class Automator:
                     self.d.click(clicks[0], clicks[1])
                     time.sleep(elsedelay)
             time.sleep(alldelay)
-
+    
     def tichuhanghui(self):  # 踢出行会
         self.d.click(693, 430)  # 点击行会
         self.lockimg('img/zhiyuansheding.jpg', elseclick=[(1, 1)], alldelay=0.5)  # 锁定行会界面
@@ -236,8 +236,40 @@ class Automator:
         self.d.click(842,488)
         time.sleep(1)
 
+    def init_home_with_running(self):
+        home = 'img/liwu.bmp'
+        paobu = 'img/paobu.bmp'
+        # 检测是否存在跑步这个步骤，有开始跳
+        while True:  #
+            screen_shot = self.d.screenshot(format="opencv")
+            
+            if UIMatcher.img_where(screen_shot, home):
+                break
+            elif UIMatcher.img_where(screen_shot, paobu):
+                print("正在跑步")
+                self.d.click(200,400)
+                time.sleep(0.5)
+                self.d.click(842,488)
+                time.sleep(0.5)
+            else:
+                self.d.click(1,1)
+                time.sleep(1)
+            time.sleep(0.5)
+         # 这里防一波第二天可可萝跳脸教程
+        screen_shot_ = self.d.screenshot(format='opencv')
+        num_of_white, _, _ = UIMatcher.find_gaoliang(screen_shot_)
+        if num_of_white < 50000:
+            self.lockimg('img/renwu_1.bmp', elseclick=[(837, 433)], elsedelay=1)
+            self.lockimg('img/liwu.bmp', elseclick=[(90, 514)], elsedelay=0.2)  # 首页锁定
+            return
+        if UIMatcher.img_where(screen_shot_, 'img/kekeluo.bmp'):
+            self.lockimg('img/renwu_1.bmp', elseclick=[(837, 433)], elsedelay=1)
+            self.lockimg('img/liwu.bmp', elseclick=[(90, 514)], elsedelay=0.2)  # 首页锁定
+    
     def init_home(self):
         # 这里防一波第二天可可萝跳脸教程
+
+
         self.lockimg('img/liwu.bmp', elseclick=[(1, 1)], elsedelay=0.5)  # 首页锁定
         time.sleep(0.5)
         screen_shot_ = self.d.screenshot(format='opencv')
@@ -740,35 +772,7 @@ class Automator:
         self.shuatuzuobiao(161, 326, self.times)  # 11-1
         self.lockimg('img/liwu.bmp', elseclick=[(131, 533)], elsedelay=1)  # 回首页
 
-    def RunningMatch(self):
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(200,400)
-        time.sleep(1)
-        self.d.click(842,488)
-        time.sleep(1)
-        self.d.click(842,488)
-        time.sleep(1)
-        self.d.click(842,488)
-        time.sleep(1)
-        self.d.click(842,488)
-        time.sleep(1)
-        self.d.click(842,488)
+    
     def dixiacheng(self,firsttime=False):  # 地下城
         time.sleep(2)
         self.d.click(1, 1)  # 可可萝教程跳过
@@ -876,8 +880,18 @@ class Automator:
             screen_shot_ = self.d.screenshot(format="opencv")
             if tmp_cout < 5:  # 预防卡死，10次错误失败后直接进行下一步
                 tmp_cout = tmp_cout + 1
-                if UIMatcher.img_where(screen_shot_, 'img/zhiyuan.jpg'):
-                    self.d.click(100, 173)  # 第一个人
+                if UIMatcher.img_where(screen_shot_, 'img/zhiyuan.jpg'):                   
+                    if (UIMatcher.img_where(screen_shot_, 'img/yly.bmp')):
+                        try:
+                            tempX, tempY = UIMatcher.img_where(screen_shot_, 'img/yly.bmp')
+                            self.d.click (tempX, tempY)
+                            print("YLY牛逼")
+                        except:
+                            print ("有些不大对劲")
+                            self.d.click(100, 173)
+                    else:
+                        print("没找到YLY")
+                        self.d.click(100, 173)  # 第一个人
                     time.sleep(1)
                     screen_shot = self.d.screenshot(format="opencv")
                     self.guochang(screen_shot, ['img/zhiyuan.jpg'], suiji=0)
