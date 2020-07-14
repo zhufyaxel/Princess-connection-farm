@@ -24,11 +24,8 @@ def runmain(address, account, password):
 
     print('>>>>>>>即将登陆的账号为：', account, '密码：', password, '<<<<<<<')
     a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao2.txt内
-    input("Press Enter to continue...")
-    a.RunningMatch()
-    input("Press Enter to continue...")    
-    a.init_home()  # 初始化，确保进入首页
-    input("Press Enter to continue...")
+    #a.init_home()  # 初始化，确保进入首页
+    a.init_home_with_running()
     a.hanghui()  # 行会捐赠
 
     a.change_acc()  # 退出当前账号，切换下一个
@@ -64,7 +61,7 @@ def connect():  # 连接adb与uiautomator
 def read():  # 读取账号
     account_dic = {}
     pattern = re.compile('\\s*(.*?)[\\s-]+([^\\s-]+)')
-    with open('zhanghao.txt', 'r') as f:  # 注意！请把账号密码写在zhanghao.txt内
+    with open('juanzeng.txt', 'r') as f:  # 注意！请把账号密码写在zhanghao.txt内
         for line in f:
             result = pattern.findall(line)
             if len(result) != 0:
