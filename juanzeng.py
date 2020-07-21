@@ -26,6 +26,7 @@ def runmain(address, account, password):
     a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao2.txt内
     #a.init_home()  # 初始化，确保进入首页
     a.init_home_with_running()
+    #a.shouqurenwu()
     a.hanghui()  # 行会捐赠
 
     a.change_acc()  # 退出当前账号，切换下一个
@@ -76,9 +77,19 @@ def read():  # 读取账号
 
 # 主程序
 if __name__ == '__main__':
-
+    #time.sleep(1200)
     # 连接adb与uiautomator
+    try:
+        os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+    except:
+        print("模拟器打开好像不大对")
+    time.sleep(30)
+    #input("测试")
+    #input("测试")
     lines, emulatornum = connect()
+
+    os.system('cd adb & adb shell monkey -p com.bilibili.priconne -c android.intent.category.LAUNCHER 1')
+    time.sleep(15)
     # 读取账号
     account_list, account_dic, accountnum = read()
 
@@ -112,3 +123,5 @@ if __name__ == '__main__':
 
     # 退出adb
     os.system('cd adb & adb kill-server')
+    os.system("taskkill /IM dnplayer.exe")
+    

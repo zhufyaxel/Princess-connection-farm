@@ -738,38 +738,54 @@ class Automator:
 
     def shuatu11(self):
         # 进入冒险
-        time.sleep(2)
+        
+        time.sleep(3)
         self.d.click(480, 505)
         time.sleep(2)
+        
         while True:
             screen_shot_ = self.d.screenshot(format="opencv")
             if UIMatcher.img_where(screen_shot_, 'img/dixiacheng.jpg'):
                 break
         self.d.click(562, 253)
-        time.sleep(2)
+        time.sleep(10)
+        for _ in range(1):
+            # 左移到11图
+            self.d.click(27, 272)
+            time.sleep(3)
         while True:
             screen_shot_ = self.d.screenshot(format="opencv")
             if UIMatcher.img_where(screen_shot_, 'img/normal.jpg'):
                 break
-        self.shuatuzuobiao(663, 408, self.times)  # 11-17
-        self.shuatuzuobiao(542, 338, self.times)  # 11-16
-        self.shuatuzuobiao(468, 429, self.times)  # 11-15
-        self.shuatuzuobiao(398, 312, self.times)  # 11-14
-        self.shuatuzuobiao(302, 428, self.times)  # 11-13
-        self.shuatuzuobiao(182, 362, self.times)  # 11-12
-        self.shuatuzuobiao(253, 237, self.times)  # 11-11
-        self.shuatuzuobiao(107, 247, self.times)  # 11-10
-        self.d.drag(200, 270, 600, 270, 0.1)  # 拖拽到最左
+        #self.shuatuzuobiao(663, 408, self.times)  # 11-17
+        #self.shuatuzuobiao(542, 338, self.times)  # 11-16
+        #self.shuatuzuobiao(468, 429, self.times)  # 11-15
+        #self.shuatuzuobiao(398, 312, self.times)  # 11-14
+        #self.shuatuzuobiao(302, 428, self.times)  # 11-13
+        
+        #self.shuatuzuobiao(107, 247, self.times)  # 11-10
+        self.shuatuzuobiao(400, 432, 10)  # 11-7
+        self.shuatuzuobiao(497, 337, 10)  # 11-6
+        
+        self.d.drag(600, 270, 200, 270, 0.1)  # 拖拽到最左
         time.sleep(2)
-        self.shuatuzuobiao(648, 316, self.times)  # 11-9
-        self.shuatuzuobiao(594, 420, self.times)  # 11-8
-        self.shuatuzuobiao(400, 432, self.times)  # 11-7
-        self.shuatuzuobiao(497, 337, self.times)  # 11-6
-        self.shuatuzuobiao(558, 240, self.times)  # 11-5
-        self.shuatuzuobiao(424, 242, self.times)  # 11-4
-        self.shuatuzuobiao(290, 285, self.times)  # 11-3
-        self.shuatuzuobiao(244, 412, self.times)  # 11-2
-        self.shuatuzuobiao(161, 326, self.times)  # 11-1
+
+        self.shuatuzuobiao(182, 362, 10)  # 11-12
+        self.shuatuzuobiao(253, 237, 10)  # 11-11
+        time.sleep(10)
+        for _ in range(1):
+            # 左移到10图
+            self.d.click(27, 272)
+            time.sleep(3)
+        self.shuatuzuobiao(287, 206, 10)
+        #self.shuatuzuobiao(648, 316, self.times)  # 11-9
+        #self.shuatuzuobiao(594, 420, self.times)  # 11-8
+       
+        #self.shuatuzuobiao(558, 240, self.times)  # 11-5
+        #self.shuatuzuobiao(424, 242, self.times)  # 11-4
+        #self.shuatuzuobiao(290, 285, self.times)  # 11-3
+        #self.shuatuzuobiao(244, 412, self.times)  # 11-2
+        #self.shuatuzuobiao(161, 326, self.times)  # 11-1
         self.lockimg('img/liwu.bmp', elseclick=[(131, 533)], elsedelay=1)  # 回首页
 
     

@@ -28,15 +28,16 @@ def runmain(address, account, password):
     #a.mianfeishilian()  # 免费十连
     a.shouqu()  # 收取所有礼物
     #a.dianzan(1)  # 公会点赞，sortflag=1表示按战力排序
-    a.dixiacheng()  # 地下城
-    a.goumaitili(2)  # 购买3次体力
+    a.goumaitili(2)  # 购买2次体力
     a.shouqurenwu()  # 收取任务
     shuatu_auth(a, account)  # 刷图控制中心
+
     #a.hanghui()  # 行会捐赠
     #a.goumaitili(times=3)  # 购买times次体力
     #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
     a.shouqurenwu()  # 二次收取任务
-
+    a.dixiacheng()  # 地下城
+    #input("Pause")
     a.change_acc()  # 退出当前账号，切换下一个
 
 
@@ -102,9 +103,18 @@ def shuatu_auth(a, account):  # 刷图总控制
 
 # 主程序
 if __name__ == '__main__':
+    try:
+        res = os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+    except:
+        print("模拟器打开好像不大对")
+    time.sleep(30)
 
     # 连接adb与uiautomator
     lines, emulatornum = connect()
+    time.sleep(5)
+    input("测试打开PCR")
+    os.system('cd adb & adb shell monkey -p com.bilibili.priconne -c android.intent.category.LAUNCHER 1')
+    input("希望成功")
     # 读取账号
     account_list, account_dic, accountnum, _, _ = read()
 

@@ -80,9 +80,16 @@ def read():  # 读取账号
 
 # 主程序
 if __name__ == '__main__':
-
-    # 连接adb与uiautomator
+     try:
+        os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+    except:
+        print("模拟器打开好像不大对")
+    time.sleep(30)
+    # 连接adb与uiautomator    
     lines, emulatornum = connect()
+
+    os.system('cd adb & adb shell monkey -p com.bilibili.priconne -c android.intent.category.LAUNCHER 1')
+    time.sleep(15)
     # 读取账号
     account_list, account_dic, accountnum = read()
 
