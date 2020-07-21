@@ -25,7 +25,9 @@ def runmain(address, account, password):
     print('>>>>>>>即将登陆的账号为：', account, '密码：', password, '<<<<<<<')
     a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao2.txt内
     #a.init_home()  # 初始化，确保进入首页
+   
     a.init_home_with_running()
+    
     a.shouqurenwu()
     a.goumaitili(times=2)  # 购买times次体力
     a.shuajingyan(map=3)  # 刷1-1经验,map为主图
