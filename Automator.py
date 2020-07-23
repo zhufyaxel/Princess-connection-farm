@@ -19,6 +19,7 @@ class Automator:
         self.appRunning = False
         self.switch = 0
         self.times = 3  # 总刷图次数
+        self.account = "default"
 
     def start(self):
         """
@@ -240,7 +241,9 @@ class Automator:
         home = 'img/liwu.bmp'
         paobu = 'img/paobu.bmp'
         # 检测是否存在跑步这个步骤，有开始跳
+        tempTimes = 0
         while True:  #
+            tempTimes = tempTimes + 1
             screen_shot = self.d.screenshot(format="opencv")
             
             if UIMatcher.img_where(screen_shot, home):
@@ -255,16 +258,25 @@ class Automator:
                 self.d.click(1,1)
                 time.sleep(1)
             time.sleep(0.5)
-         # 这里防一波第二天可可萝跳脸教程
+            if tempTimes > 30:
+                print("号没了")
+                return False
+
+        # 这里防一波第二天可可萝跳脸教程
         screen_shot_ = self.d.screenshot(format='opencv')
         num_of_white, _, _ = UIMatcher.find_gaoliang(screen_shot_)
         if num_of_white < 50000:
             self.lockimg('img/renwu_1.bmp', elseclick=[(837, 433)], elsedelay=1)
             self.lockimg('img/liwu.bmp', elseclick=[(90, 514)], elsedelay=0.2)  # 首页锁定
-            return
+            print("初始化完成")
+            return True
         if UIMatcher.img_where(screen_shot_, 'img/kekeluo.bmp'):
             self.lockimg('img/renwu_1.bmp', elseclick=[(837, 433)], elsedelay=1)
             self.lockimg('img/liwu.bmp', elseclick=[(90, 514)], elsedelay=0.2)  # 首页锁定
+            print("初始化完成")
+            return True
+        print("初始化完成")
+        return True
     
     def init_home(self):
         # 这里防一波第二天可可萝跳脸教程
