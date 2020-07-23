@@ -16,24 +16,28 @@ def runmain(address, account, password):
 
     a = Automator(address)
     a.start()
-
-    # #opencv识别可视化 无法在多线程中使用
-    # plt.ion()
-    # fig, ax = plt.subplots(1)
-    # plt.show()
-
-    print('>>>>>>>即将登陆的账号为：', account, '密码：', password, '<<<<<<<')
-    a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao2.txt内
+    print('>>>>>>>即将登陆的账号为：', account, '密码：', password, '<<<<<<<', '\r\n')
+    a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao.txt内
     #a.init_home()  # 初始化，确保进入首页
-   
     a.init_home_with_running()
-    a.shouqu()
-    a.shouqurenwu()
-    a.goumaitili(times=2)  # 购买times次体力
-    a.shuajingyan(map=3)  # 刷1-1经验,map为主图
+    a.sw_init()  # 初始化刷图
+    
+    a.gonghuizhijia()  # 家园一键领取
+    #a.goumaimana(0)  # 购买mana 1次
+    #a.mianfeiniudan()  # 免费扭蛋
+    #a.mianfeishilian()  # 免费十连
+    a.shouqu()  # 收取所有礼物
+    #a.dianzan(1)  # 公会点赞，sortflag=1表示按战力排序
+    #a.goumaitili(2)  # 购买2次体力
+    a.shouqurenwu()  # 收取任务
+    #shuatu_auth(a, account)  # 刷图控制中心    
+    a.shuatu12()
     #a.hanghui()  # 行会捐赠
-    a.dixiacheng()
-
+    #a.goumaitili(times=3)  # 购买times次体力
+    #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
+    a.shouqurenwu()  # 二次收取任务
+    #a.dixiacheng()  # 地下城
+    #input("Pause")
     a.change_acc()  # 退出当前账号，切换下一个
 
 
@@ -66,34 +70,52 @@ def connect():  # 连接adb与uiautomator
 
 def read():  # 读取账号
     account_dic = {}
-    pattern = re.compile('\\s*(.*?)[\\s-]+([^\\s-]+)')
-    with open('mana.txt', 'r') as f:  # 注意！请把账号密码写在zhanghao.txt内
+    fun_dic = {}
+    fun_list = []
+    pattern = re.compile('\\s*(.*?)[\\s-]+([^\\s-]+)[\\s-]*(.*)')
+    with open('12_shua.txt', 'r') as f:  # 注意！请把账号密码写在zhanghao.txt内
         for line in f:
             result = pattern.findall(line)
             if len(result) != 0:
-                account, password = result[0]
+                account, password, fun = result[0]
             else:
                 continue
             account_dic[account] = password
+            fun_dic[account] = fun
+            fun_list.append(fun_dic[account])
     account_list = list(account_dic.keys())
     accountnum = len(account_list)
-    return account_list, account_dic, accountnum
+    return account_list, account_dic, accountnum, fun_list, fun_dic
+
+
+def shuatu_auth(a, account):  # 刷图总控制
+    shuatu_dic = {
+        '08': 'a.shuatu8()',
+        '10': 'a.shuatu10()',
+        '11': 'a.shuatu11()'
+    }
+    _, _, _, fun_list, fun_dic = read()
+    if fun_dic[account] == '[]':
+        eval(shuatu_dic['10'])
+    else:
+        eval(shuatu_dic[fun_dic[account][0:2]])
 
 
 # 主程序
 if __name__ == '__main__':
     try:
-        os.popen('C:\XuanZhi\LDPlayer\dnplayer.exe')
+        res = os.popen('C:\XuanZhi\LDPlayer\dnplayer.exe')
     except:
         print("模拟器打开好像不大对")
     time.sleep(30)
-    # 连接adb与uiautomator    
-    lines, emulatornum = connect()
 
+    # 连接adb与uiautomator
+    lines, emulatornum = connect()
+    time.sleep(5)
     os.system('cd adb & adb shell monkey -p com.bilibili.priconne -c android.intent.category.LAUNCHER 1')
     time.sleep(15)
     # 读取账号
-    account_list, account_dic, accountnum = read()
+    account_list, account_dic, accountnum, _, _ = read()
 
     # 多线程执行
     count = 0  # 完成账号数

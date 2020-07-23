@@ -73,7 +73,7 @@ def read():  # 读取账号
     fun_dic = {}
     fun_list = []
     pattern = re.compile('\\s*(.*?)[\\s-]+([^\\s-]+)[\\s-]*(.*)')
-    with open('zhanghao.txt', 'r') as f:  # 注意！请把账号密码写在zhanghao.txt内
+    with open('zhanghao_lianji.txt', 'r') as f:  # 注意！请把账号密码写在zhanghao.txt内
         for line in f:
             result = pattern.findall(line)
             if len(result) != 0:
@@ -104,7 +104,7 @@ def shuatu_auth(a, account):  # 刷图总控制
 # 主程序
 if __name__ == '__main__':
     try:
-        res = os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+        res = os.popen('C:\XuanZhi\LDPlayer\dnplayer.exe')
     except:
         print("模拟器打开好像不大对")
     time.sleep(30)
@@ -112,9 +112,8 @@ if __name__ == '__main__':
     # 连接adb与uiautomator
     lines, emulatornum = connect()
     time.sleep(5)
-    input("测试打开PCR")
     os.system('cd adb & adb shell monkey -p com.bilibili.priconne -c android.intent.category.LAUNCHER 1')
-    input("希望成功")
+    time.sleep(15)
     # 读取账号
     account_list, account_dic, accountnum, _, _ = read()
 
@@ -148,3 +147,5 @@ if __name__ == '__main__':
 
     # 退出adb
     os.system('cd adb & adb kill-server')
+    #os.system("taskkill /IM dnplayer.exe")
+    os.system('cd adb & adb shell am force-stop com.bilibili.priconne')
