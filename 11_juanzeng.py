@@ -81,7 +81,7 @@ if __name__ == '__main__':
     #time.sleep(1200)
     # 连接adb与uiautomator
     try:
-        os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+        os.popen('dnplayer.exe')
     except:
         print("模拟器打开好像不大对")
     time.sleep(30)

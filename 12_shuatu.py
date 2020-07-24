@@ -111,7 +111,7 @@ def shuatu_auth(a, account):  # 刷图总控制
 # 主程序
 if __name__ == '__main__':
     try:
-        res = os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+        res = os.popen('dnplayer.exe')
     except:
         print("模拟器打开好像不大对")
     time.sleep(20)

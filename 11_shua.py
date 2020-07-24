@@ -35,10 +35,10 @@ def runmain(address, account, password):
         a.shouqu()  # 收取所有礼物
         #a.dianzan(1)  # 公会点赞，sortflag=1表示按战力排序
         a.shouqurenwu()  # 收取任务
-        a.goumaitili(4)  # 购买2次体力
+        #a.goumaitili(4)  # 购买2次体力
         a.times = 5
         #shuatu_auth(a, account)  # 刷图控制中心    
-        a.shuatu12()
+        a.shuatu11()
         #a.hanghui()  # 行会捐赠
         #a.goumaitili(times=3)  # 购买times次体力
         #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     #time.sleep(1200)
     # 连接adb与uiautomator
     try:
-        os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
+        os.popen('dnplayer.exe')
     except:
         print("模拟器打开好像不大对")
     time.sleep(30)
