@@ -8,6 +8,7 @@ from Automator import *
 import os
 import threading
 import re
+import random
 
 
 def runmain(address, account, password):
@@ -25,12 +26,22 @@ def runmain(address, account, password):
     print('>>>>>>>即将登陆的账号为：', account, '密码：', password, '<<<<<<<')
     a.login_auth(account, password)  # 注意！请把账号密码写在zhanghao2.txt内
     #a.init_home()  # 初始化，确保进入首页
-    a.init_home_with_running()
-    #a.shouqurenwu()
-    #input("调试")
-    a.hanghui()  # 行会捐赠
-
-    a.change_acc()  # 退出当前账号，切换下一个
+    if a.init_home_with_running() == True:
+    
+        a.init_home_with_running()
+        #a.shouqurenwu()
+        #input("调试")
+        a.hanghui()  # 行会捐赠
+        #a.dixiacheng()
+        #a.shuatu11()
+        #a.shouqurenwu()
+        a.change_acc()  # 退出当前账号，切换下一个
+        
+    else:
+        f = open('forbid.txt', 'a')
+        f.write(account)
+        f.write('\n')
+        f.close()
 
 
 def connect():  # 连接adb与uiautomator
@@ -93,7 +104,12 @@ if __name__ == '__main__':
     time.sleep(15)
     # 读取账号
     account_list, account_dic, accountnum = read()
-
+    orderNums = list(range(0,accountnum))
+    print(orderNums)
+    random.shuffle(orderNums)
+    print(orderNums)
+    #input("看看Orders")
+    i = 0
     # 多线程执行
     count = 0  # 完成账号数
     thread_list = []
@@ -101,7 +117,7 @@ if __name__ == '__main__':
     for i in range(int(accountnum / emulatornum)):  # 完整循环 join()方法确保完成后再进行下一次循环
         for j in range(emulatornum):
             t = threading.Thread(target=runmain, args=(
-                lines[j], account_list[i * emulatornum + j], account_dic[account_list[i * emulatornum + j]]))
+                lines[j], account_list[orderNums[i * emulatornum + j]], account_dic[account_list[orderNums[i * emulatornum + j]]]))
             thread_list.append(t)
             count += 1
         for t in thread_list:
@@ -110,7 +126,7 @@ if __name__ == '__main__':
             t.join()
         thread_list = []
     # 剩余账号
-    i = 0
+  
     while count != accountnum:
         t = threading.Thread(target=runmain,
                              args=(lines[i], account_list[count], account_dic[account_list[count]]))

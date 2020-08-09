@@ -83,7 +83,7 @@ def read():  # 读取账号
 # 主程序
 if __name__ == '__main__':
     try:
-        os.popen('C:\XuanZhi\LDPlayer\dnplayer.exe')
+        os.popen('F:\XuanZhi\LDPlayer\dnplayer.exe')
     except:
         print("模拟器打开好像不大对")
     time.sleep(30)

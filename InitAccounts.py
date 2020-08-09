@@ -34,7 +34,7 @@ def runmain(address, account, password):
     #a.goumaitili(times=3)  # 购买times次体力
     #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
     #a.shouqurenwu()  # 二次收取任务
-    a.joinhanghui("妖妖妖妖妖")
+    a.joinhanghui("勤劳的妖妖妖")
     #a.dianzan(1)  # 公会点赞，sortflag=1表示按战力排序
     a.dixiacheng(True)
     

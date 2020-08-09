@@ -229,7 +229,7 @@ class Automator:
             self.auth(auth_name=auth_name, auth_id=auth_id)
     
     def lockingRunning(self):
-        self.lockimg('img/paobu.bmp', ifclick=[(200,400)], ifdelay=0.5,elseclick=[(1, 1)], elsedelay=0.5)
+        self.lockimg('img/paobu.bmp', ifclick=[(200,400)], ifdelay=0.5,elseclick=[(50, 50)], elsedelay=0.5)
         
         print("正在跑步")
         self.d.click(842,488)
@@ -255,10 +255,10 @@ class Automator:
                 self.d.click(842,488)
                 time.sleep(0.5)
             else:
-                self.d.click(1,1)
+                self.d.click(random.randint(10, 50),random.randint(10, 50))
                 time.sleep(1)
             time.sleep(0.5)
-            if tempTimes > 30:
+            if tempTimes > 60:
                 print("号没了")
                 return False
 

@@ -26,18 +26,18 @@ def runmain(address, account, password):
         #a.goumaimana(0)  # 购买mana 1次
         #a.mianfeiniudan()  # 免费扭蛋
         #a.mianfeishilian()  # 免费十连
-        a.shouqu()  # 收取所有礼物
+        ##a.shouqu()  # 收取所有礼物
         #a.dianzan(1)  # 公会点赞，sortflag=1表示按战力排序
         a.shouqurenwu()  # 收取任务
         a.goumaitili(4)  # 购买2次体力
-        a.times = 5
+        a.times = 6
         #shuatu_auth(a, account)  # 刷图控制中心    
         a.shuatu12()
         #a.hanghui()  # 行会捐赠
         #a.goumaitili(times=3)  # 购买times次体力
         #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
         a.shouqurenwu()  # 二次收取任务
-        #a.dixiacheng()  # 地下城
+        a.dixiacheng()  # 地下城
         #input("Pause")
         a.change_acc()  # 退出当前账号，切换下一个
     else:
@@ -156,3 +156,4 @@ if __name__ == '__main__':
     os.system('cd adb & adb kill-server')
     os.system("taskkill /IM dnplayer.exe")
     #os.system('cd adb & adb shell am force-stop com.bilibili.priconne')
+    os.system("shutdown -s t 600")

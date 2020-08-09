@@ -34,7 +34,7 @@ def runmain(address, account, password):
         #a.mianfeishilian()  # 免费十连
         a.shouqu()  # 收取所有礼物
         #a.dianzan(1)  # 公会点赞，sortflag=1表示按战力排序
-        a.shouqurenwu()  # 收取任务
+        ##a.shouqurenwu()  # 收取任务
         #a.goumaitili(4)  # 购买2次体力
         a.times = 5
         #shuatu_auth(a, account)  # 刷图控制中心    
@@ -42,7 +42,7 @@ def runmain(address, account, password):
         #a.hanghui()  # 行会捐赠
         #a.goumaitili(times=3)  # 购买times次体力
         #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
-        a.shouqurenwu()  # 二次收取任务
+        ##a.shouqurenwu()  # 二次收取任务
         a.dixiacheng()  # 地下城
         #input("Pause")
         a.change_acc()  # 退出当前账号，切换下一个
