@@ -27,10 +27,10 @@ def runmain(address, account, password):
     #a.init_home()  # 初始化，确保进入首页
    
     a.init_home_with_running()
-    a.shouqu()
-    a.shouqurenwu()
-    a.goumaitili(times=2)  # 购买times次体力
-    a.shuajingyan(map=3)  # 刷1-1经验,map为主图
+    #a.shouqu()
+    #a.shouqurenwu()
+    #a.goumaitili(times=2)  # 购买times次体力
+    #a.shuajingyan(map=3)  # 刷1-1经验,map为主图
     #a.hanghui()  # 行会捐赠
     a.dixiacheng()
 

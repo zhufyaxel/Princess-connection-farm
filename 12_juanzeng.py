@@ -27,9 +27,9 @@ def runmain(address, account, password):
     #a.init_home()  # 初始化，确保进入首页
     a.init_home_with_running()
     #a.shouqurenwu()
-    input("调试")
+    #input("调试")
 
-    #a.hanghui()  # 行会捐赠
+    a.hanghui()  # 行会捐赠
 
     a.change_acc()  # 退出当前账号，切换下一个
 
